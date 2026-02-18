@@ -93,3 +93,22 @@
       cursor: pointer;
       transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
     }
+    .btn:hover { background: var(--surface); border-color: var(--accent); }
+    .btn-primary {
+      background: linear-gradient(135deg, #5b21b6, #7c3aed);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { box-shadow: 0 0 20px rgba(167, 139, 250, 0.35); }
+    .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .card h2 {
+      font-size: 1rem;
+      font-weight: 600;
