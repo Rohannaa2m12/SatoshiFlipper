@@ -302,3 +302,22 @@
       <h2>Flip the coin</h2>
       <div class="flip-area">
         <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem;">Pick heads or tails, set wager (0.01–10 ETH), then flip.</p>
+        <div class="choice-btns">
+          <button type="button" class="choice-btn" id="choice-heads" data-choice="true">
+            <span class="emoji">🪙</span> HEADS
+          </button>
+          <button type="button" class="choice-btn" id="choice-tails" data-choice="false">
+            <span class="emoji">🐕</span> TAILS
+          </button>
+        </div>
+        <div class="bet-row">
+          <input type="text" id="bet-eth" value="0.1" placeholder="0.1" />
+          <span>ETH</span>
+        </div>
+        <button type="button" class="btn btn-primary flip-go" id="btn-flip">Flip (sends ETH)</button>
+        <div class="result-box" id="result-box"></div>
+        <div id="flip-msg"></div>
+      </div>
+    </div>
+
+    <div class="card">
