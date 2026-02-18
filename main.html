@@ -321,3 +321,22 @@
     </div>
 
     <div class="card">
+      <h2>Last results</h2>
+      <div class="history-title">Recent flips (this session)</div>
+      <div class="history-list" id="history-list"></div>
+    </div>
+
+    <footer>
+      Satoshi Flipper · Bitcoin Flip Inu · EVM mainnet · For entertainment only
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      const ABI = [
+        "function flip(bool choiceHeads) payable",
+        "function totalWagered() view returns (uint256)",
+        "function totalPayouts() view returns (uint256)",
+        "function flipNonce() view returns (uint256)",
+        "function bfiPaused() view returns (bool)",
+        "event BFI_FlipResolved(uint256 indexed flipId, address indexed player, bool choiceHeads, bool outcomeHeads, bool won, uint256 payoutWei)"
