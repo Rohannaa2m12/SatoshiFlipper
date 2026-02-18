@@ -150,3 +150,22 @@
       font-weight: 600;
       border-radius: var(--radius);
       border: 2px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .choice-btn:hover { border-color: var(--gold-dim); background: rgba(245, 176, 66, 0.08); }
+    .choice-btn.active { border-color: var(--gold); background: rgba(245, 176, 66, 0.15); color: var(--gold); }
+    .choice-btn .emoji { display: block; font-size: 1.8rem; margin-bottom: 0.35rem; }
+
+    .bet-row {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .bet-row input {
+      font-family: var(--font-mono);
