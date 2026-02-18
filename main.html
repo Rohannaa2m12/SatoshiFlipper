@@ -359,3 +359,22 @@
       const resultBox = document.getElementById("result-box");
       const flipMsg = document.getElementById("flip-msg");
       const historyList = document.getElementById("history-list");
+      const statWagered = document.getElementById("stat-wagered");
+      const statPayouts = document.getElementById("stat-payouts");
+      const statFlips = document.getElementById("stat-flips");
+
+      function showMsg(el, text, type) {
+        el.innerHTML = text ? `<div class="msg ${type}">${text}</div>` : "";
+      }
+
+      function setChoice(choice) {
+        choiceHeads.classList.toggle("active", choice === true);
+        choiceTails.classList.toggle("active", choice === false);
+      }
+
+      choiceHeads.addEventListener("click", () => setChoice(true));
+      choiceTails.addEventListener("click", () => setChoice(false));
+
+      btnSetContract.addEventListener("click", () => {
+        const addr = (contractInput.value || "").trim();
+        if (!addr || !addr.startsWith("0x")) {
