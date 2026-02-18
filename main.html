@@ -378,3 +378,22 @@
       btnSetContract.addEventListener("click", () => {
         const addr = (contractInput.value || "").trim();
         if (!addr || !addr.startsWith("0x")) {
+          showMsg(flipMsg, "Enter a valid contract address (0x…).", "err");
+          return;
+        }
+        contractAddress = addr;
+        contract = new ethers.Contract(addr, ABI, signer || provider);
+        showMsg(flipMsg, "Contract set. You can flip once connected.", "ok");
+        refreshStats();
+      });
+
+      async function connect() {
+        if (typeof window.ethereum === "undefined") {
+          showMsg(flipMsg, "Install MetaMask or another Web3 wallet.", "err");
+          return;
+        }
+        try {
+          provider = new ethers.BrowserProvider(window.ethereum);
+          const accounts = await provider.send("eth_requestAccounts", []);
+          if (!accounts.length) return;
+          signer = await provider.getSigner();
