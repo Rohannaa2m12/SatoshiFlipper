@@ -340,3 +340,22 @@
         "function flipNonce() view returns (uint256)",
         "function bfiPaused() view returns (bool)",
         "event BFI_FlipResolved(uint256 indexed flipId, address indexed player, bool choiceHeads, bool outcomeHeads, bool won, uint256 payoutWei)"
+      ];
+
+      let provider = null;
+      let signer = null;
+      let contract = null;
+      let contractAddress = "";
+      const history = [];
+
+      const walletEl = document.getElementById("wallet-addr");
+      const btnConnect = document.getElementById("btn-connect");
+      const contractInput = document.getElementById("contract-address");
+      const btnSetContract = document.getElementById("btn-set-contract");
+      const choiceHeads = document.getElementById("choice-heads");
+      const choiceTails = document.getElementById("choice-tails");
+      const betEth = document.getElementById("bet-eth");
+      const btnFlip = document.getElementById("btn-flip");
+      const resultBox = document.getElementById("result-box");
+      const flipMsg = document.getElementById("flip-msg");
+      const historyList = document.getElementById("history-list");
