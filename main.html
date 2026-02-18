@@ -188,3 +188,22 @@
       padding: 0.9rem;
       font-size: 1.05rem;
       margin-top: 0.5rem;
+    }
+
+    .result-box {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      display: none;
+    }
+    .result-box.visible { display: block; }
+    .result-box.win { background: rgba(74, 222, 128, 0.12); border: 1px solid var(--green); color: #86efac; }
+    .result-box.loss { background: rgba(248, 113, 113, 0.12); border: 1px solid var(--red); color: #fca5a5; }
+    .result-box.pending { background: rgba(245, 176, 66, 0.1); border: 1px solid var(--gold-dim); color: var(--gold); }
+
+    .history-title { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .history-list {
+      max-height: 200px;
+      overflow-y: auto;
