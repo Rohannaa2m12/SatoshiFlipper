@@ -397,3 +397,22 @@
           const accounts = await provider.send("eth_requestAccounts", []);
           if (!accounts.length) return;
           signer = await provider.getSigner();
+          const addr = await signer.getAddress();
+          walletEl.textContent = addr.slice(0, 6) + "…" + addr.slice(-4);
+          btnConnect.textContent = "Connected";
+          btnConnect.disabled = true;
+          if (contractAddress) {
+            contract = new ethers.Contract(contractAddress, ABI, signer);
+            refreshStats();
+          }
+        } catch (e) {
+          showMsg(flipMsg, e.message || "Connection failed.", "err");
+        }
+      }
+
+      btnConnect.addEventListener("click", connect);
+
+      async function refreshStats() {
+        if (!contract || !provider) return;
+        try {
+          const [wagered, payouts, nonce] = await Promise.all([
