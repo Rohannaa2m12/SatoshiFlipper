@@ -473,3 +473,22 @@
           history.unshift({ choice, won, payout: payoutWei, tx: tx.hash });
           if (history.length > 20) history.pop();
           renderHistory();
+          refreshStats();
+        } catch (e) {
+          resultBox.className = "result-box visible loss";
+          resultBox.textContent = "Tx failed.";
+          showMsg(flipMsg, e.message || "Transaction failed.", "err");
+        }
+        btnFlip.disabled = false;
+      });
+
+      function renderHistory() {
+        historyList.innerHTML = history.map(h => {
+          const side = h.choice ? "HEADS" : "TAILS";
+          const cls = h.won ? "won" : "lost";
+          const text = h.won ? "+" + ethers.formatEther(h.payout) + " ETH" : "Loss";
+          return `<div class="history-item"><span>${side}</span><span class="${cls}">${text}</span></div>`;
+        }).join("");
+      }
+    })();
+  </script>
