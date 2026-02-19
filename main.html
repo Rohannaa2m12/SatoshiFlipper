@@ -435,3 +435,22 @@
           showMsg(flipMsg, "Connect wallet and set contract first.", "err");
           return;
         }
+        const choice = choiceHeads.classList.contains("active");
+        let eth;
+        try {
+          eth = ethers.parseEther(betEth.value.trim() || "0.1");
+        } catch (_) {
+          showMsg(flipMsg, "Invalid bet amount (e.g. 0.1).", "err");
+          return;
+        }
+        const minWei = ethers.parseEther("0.01");
+        const maxWei = ethers.parseEther("10");
+        if (eth < minWei || eth > maxWei) {
+          showMsg(flipMsg, "Bet must be between 0.01 and 10 ETH.", "err");
+          return;
+        }
+
+        resultBox.className = "result-box visible pending";
+        resultBox.textContent = "Confirm in wallet…";
+        showMsg(flipMsg, "", "");
+        btnFlip.disabled = true;
