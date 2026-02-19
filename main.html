@@ -416,3 +416,22 @@
         if (!contract || !provider) return;
         try {
           const [wagered, payouts, nonce] = await Promise.all([
+            contract.totalWagered(),
+            contract.totalPayouts(),
+            contract.flipNonce()
+          ]);
+          statWagered.textContent = ethers.formatEther(wagered) + " ETH";
+          statPayouts.textContent = ethers.formatEther(payouts) + " ETH";
+          statFlips.textContent = nonce.toString();
+        } catch (_) {
+          statWagered.textContent = "—";
+          statPayouts.textContent = "—";
+          statFlips.textContent = "—";
+        }
+      }
+
+      btnFlip.addEventListener("click", async () => {
+        if (!contract || !signer) {
+          showMsg(flipMsg, "Connect wallet and set contract first.", "err");
+          return;
+        }
