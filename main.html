@@ -454,3 +454,22 @@
         resultBox.textContent = "Confirm in wallet…";
         showMsg(flipMsg, "", "");
         btnFlip.disabled = true;
+
+        try {
+          const tx = await contract.flip(choice, { value: eth });
+          resultBox.textContent = "Mining… " + tx.hash.slice(0, 10) + "…";
+          const receipt = await tx.wait();
+          const parsed = receipt.logs.find(l => l.fragment && l.fragment.name === "BFI_FlipResolved");
+          let won = false;
+          let payoutWei = 0n;
+          if (parsed && parsed.args) {
+            won = parsed.args[4];
+            payoutWei = parsed.args[5];
+          }
+          resultBox.className = "result-box visible " + (won ? "win" : "loss");
+          resultBox.textContent = won
+            ? "You won! Payout: " + ethers.formatEther(payoutWei) + " ETH"
+            : "Tails (or heads) — you lost this flip.";
+          history.unshift({ choice, won, payout: payoutWei, tx: tx.hash });
+          if (history.length > 20) history.pop();
+          renderHistory();
